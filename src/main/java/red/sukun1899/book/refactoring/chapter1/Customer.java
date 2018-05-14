@@ -72,7 +72,7 @@ public class Customer {
         }
         // フッタ部分の追加
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned" + String.valueOf(frequentRenterPoints) +
+        result += "You earned " + String.valueOf(frequentRenterPoints) +
                 " frequent renter points";
         return result;
     }
