@@ -32,4 +32,46 @@ class CustomerSpec extends Specification {
                 "Amount owed is 14.0\n" +
                 "You earned 4 frequent renter points"
     }
+
+    def "旧作を1本2日間レンタルする"() {
+        given:
+        def rental = new Rental(
+                new Movie("ジュラシックパーク", Movie.REGULAR),
+                2
+        )
+
+        and:
+        def customer = new Customer("Taro")
+        customer.addRental(rental)
+
+        when:
+        def actual = customer.statement()
+
+        then:
+        actual == "Rental Record for Taro\n" +
+                "\tジュラシックパーク\t2.0\n" +
+                "Amount owed is 2.0\n" +
+                "You earned 1 frequent renter points"
+    }
+
+    def "子供向けを1本4日間レンタルする"() {
+        given:
+        def rental = new Rental(
+                new Movie("ドラえもん", Movie.CHILDRENS),
+                4
+        )
+
+        and:
+        def customer = new Customer("Taro")
+        customer.addRental(rental)
+
+        when:
+        def actual = customer.statement()
+
+        then:
+        actual == "Rental Record for Taro\n" +
+                "\tドラえもん\t3.0\n" +
+                "Amount owed is 3.0\n" +
+                "You earned 1 frequent renter points"
+    }
 }
