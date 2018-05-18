@@ -36,12 +36,7 @@ public class Customer {
 
         for (Rental each : rentals) {
             // レンタルポイントを加算
-            frequentRenterPoints++;
-            // 新作を２日以上借りた場合はボーナスポイント
-            if ((each.getMovie().getPriceCode() == Movie.NEW_RELEASE)
-                    && each.getDaysRented() > 1) {
-                frequentRenterPoints++;
-            }
+            frequentRenterPoints += each.getFrequentRentalPoints();
 
             // この貸出に関する数値の表示
             result += "\t" + each.getMovie().getTitle() +
