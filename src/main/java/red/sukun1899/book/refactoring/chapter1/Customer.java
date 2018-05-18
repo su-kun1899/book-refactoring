@@ -35,11 +35,6 @@ public class Customer {
         String result = "Rental Record for " + getName() + "\n";
 
         for (Rental each : rentals) {
-            double thisAmount = 0;
-
-            // 一行ごとに金額を計算
-            thisAmount = each.getCharge();
-
             // レンタルポイントを加算
             frequentRenterPoints++;
             // 新作を２日以上借りた場合はボーナスポイント
@@ -50,9 +45,9 @@ public class Customer {
 
             // この貸出に関する数値の表示
             result += "\t" + each.getMovie().getTitle() +
-                    "\t" + String.valueOf(thisAmount) +
+                    "\t" + String.valueOf(each.getCharge()) +
                     "\n";
-            totalAmount += thisAmount;
+            totalAmount += each.getCharge();
         }
         // フッタ部分の追加
         result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
