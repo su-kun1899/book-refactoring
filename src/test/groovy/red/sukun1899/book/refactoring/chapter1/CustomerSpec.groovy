@@ -74,4 +74,30 @@ class CustomerSpec extends Specification {
                 "Amount owed is 3.0\n" +
                 "You earned 1 frequent renter points"
     }
+
+    def "html形式で請求書を作成する"() {
+        given:
+        def customer = new Customer("Jiro")
+
+        and:
+        def movies = [
+                new Movie("ジュラシックパーク", Movie.REGULAR),
+                new Movie("スター・ウォーズ", Movie.NEW_RELEASE),
+                new Movie("ドラえもん", Movie.CHILDRENS),
+        ]
+
+        and:
+        movies.each { customer.addRental(new Rental(it, 3)) }
+
+        when:
+        def actual = customer.htmlStatement()
+
+        then:
+        actual == "<h1>Rental Record for <em>Jiro</em></h1><p>\n" +
+                "ジュラシックパーク: 3.5<br>\n" +
+                "スター・ウォーズ: 9.0<br>\n" +
+                "ドラえもん: 1.5<br>\n" +
+                "<p>You owe <em>14.0</em><p>\n" +
+                "On this rental you earned <em>4</em> frequent renter points<p>"
+    }
 }
