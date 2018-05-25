@@ -27,11 +27,6 @@ public class Rental {
     }
 
     int getFrequentRentalPoints() {
-        if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) && getDaysRented() > 1) {
-            // 新作を２日以上借りた場合はボーナスポイント
-            return 2;
-        } else {
-            return 1;
-        }
+        return getMovie().getFrequentRentalPoints(getDaysRented());
     }
 }
