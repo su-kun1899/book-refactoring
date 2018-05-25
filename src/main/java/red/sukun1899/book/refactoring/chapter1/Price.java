@@ -10,7 +10,7 @@ abstract class Price {
 class ChildrenPrice extends Price {
     @Override
     int getPriceCode() {
-        return Movie.CHILDRENS;
+        return Movie.CHILDREN;
     }
 }
 

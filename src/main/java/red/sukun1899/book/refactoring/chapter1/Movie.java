@@ -6,7 +6,7 @@ package red.sukun1899.book.refactoring.chapter1;
  * @author su-kun1899
  */
 public class Movie {
-    public static final int CHILDRENS = 2;
+    public static final int CHILDREN = 2;
     public static final int REGULAR = 0;
     public static final int NEW_RELEASE = 1;
 
@@ -30,7 +30,7 @@ public class Movie {
             case Movie.NEW_RELEASE:
                 result += daysRented * 3;
                 break;
-            case Movie.CHILDRENS:
+            case Movie.CHILDREN:
                 result += 1.5;
                 if (daysRented > 3) {
                     result += (daysRented - 3) * 1.5;
