@@ -26,7 +26,7 @@ public class Rental {
         return getMovie().getCharge(getDaysRented());
     }
 
-    int getFrequentRentalPoints() {
-        return getMovie().getFrequentRentalPoints(getDaysRented());
+    int getFrequentRenterPoints() {
+        return getMovie().getFrequentRenterPoints(getDaysRented());
     }
 }
