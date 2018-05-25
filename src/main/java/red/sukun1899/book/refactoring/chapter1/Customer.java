@@ -70,7 +70,7 @@ public class Customer {
     private int getTotalFrequentRenterPoints() {
         int result = 0;
         for (Rental each : rentals) {
-            result += each.getFrequentRentalPoints();
+            result += each.getFrequentRenterPoints();
         }
         return result;
     }
