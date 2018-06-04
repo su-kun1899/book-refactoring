@@ -30,6 +30,24 @@ class PriceSpec extends Specification {
     }
 
     @Unroll
+    def '通常価格で #daysRented 日レンタルの場合、ポイントは #expected になる'() {
+        given:
+        price = new RegularPrice()
+
+        when:
+        def actual = price.getFrequentRenterPoints(daysRented)
+
+        then:
+        actual == expected
+
+        where:
+        daysRented || expected
+        1          || 1
+        2          || 1
+        3          || 1
+    }
+
+    @Unroll
     def '子供向け価格で #daysRented 日レンタルの場合、料金は #expected になる'() {
         given:
         price = new ChildrenPrice()
@@ -50,6 +68,24 @@ class PriceSpec extends Specification {
     }
 
     @Unroll
+    def '子供向け価格で #daysRented 日レンタルの場合、ポイントは #expected になる'() {
+        given:
+        price = new ChildrenPrice()
+
+        when:
+        def actual = price.getFrequentRenterPoints(daysRented)
+
+        then:
+        actual == expected
+
+        where:
+        daysRented || expected
+        1          || 1
+        2          || 1
+        3          || 1
+    }
+
+    @Unroll
     def '新作価格で #daysRented 日レンタルの場合、料金は #expected になる'() {
         given:
         price = new NewReleasePrice()
@@ -67,5 +103,23 @@ class PriceSpec extends Specification {
         3          || 3 * 3
         4          || 3 * 4
         5          || 3 * 5
+    }
+
+    @Unroll
+    def '新作価格で #daysRented 日レンタルの場合、ポイントは #expected になる'() {
+        given:
+        price = new NewReleasePrice()
+
+        when:
+        def actual = price.getFrequentRenterPoints(daysRented)
+
+        then:
+        actual == expected
+
+        where:
+        daysRented || expected
+        1          || 1
+        2          || 2
+        3          || 2
     }
 }
