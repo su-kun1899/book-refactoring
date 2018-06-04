@@ -12,6 +12,7 @@
         <java.version>1.8</java.version>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <maven.compiler.source>${java.version}</maven.compiler.source>
+        <project.build.testSourceDirectory>${project.basedir}/src/test/groovy</project.build.testSourceDirectory>
     </properties>
 
     <build>
