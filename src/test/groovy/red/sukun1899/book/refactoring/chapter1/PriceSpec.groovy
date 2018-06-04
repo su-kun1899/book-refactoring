@@ -10,116 +10,56 @@ class PriceSpec extends Specification {
     Price price
 
     @Unroll
-    def '通常価格で #daysRented 日レンタルの場合、料金は #expected になる'() {
-        given:
+    def '通常価格で #daysRented 日レンタルの場合、[料金: #charge][ポイント: #point]になる'() {
+        when:
         price = new RegularPrice()
 
-        when:
-        def actual = price.getCharge(daysRented)
-
         then:
-        actual == expected
+        price.getCharge(daysRented) == charge
+        price.getFrequentRenterPoints(daysRented) == point
 
         where:
-        daysRented || expected
-        1          || 2
-        2          || 2
-        3          || 2 + 1.5 * 1
-        4          || 2 + 1.5 * 2
-        5          || 2 + 1.5 * 3
+        daysRented || charge      | point
+        1          || 2           | 1
+        2          || 2           | 1
+        3          || 2 + 1.5 * 1 | 1
+        4          || 2 + 1.5 * 2 | 1
+        5          || 2 + 1.5 * 3 | 1
     }
 
     @Unroll
-    def '通常価格で #daysRented 日レンタルの場合、ポイントは #expected になる'() {
-        given:
-        price = new RegularPrice()
-
+    def '子供向け価格で #daysRented 日レンタルの場合、[料金: #charge][ポイント: #point]になる'() {
         when:
-        def actual = price.getFrequentRenterPoints(daysRented)
-
-        then:
-        actual == expected
-
-        where:
-        daysRented || expected
-        1          || 1
-        2          || 1
-        3          || 1
-    }
-
-    @Unroll
-    def '子供向け価格で #daysRented 日レンタルの場合、料金は #expected になる'() {
-        given:
         price = new ChildrenPrice()
 
-        when:
-        def actual = price.getCharge(daysRented)
-
         then:
-        actual == expected as double
+        price.getCharge(daysRented) == charge as double
+        price.getFrequentRenterPoints(daysRented) == point
 
         where:
-        daysRented || expected
-        1          || 1.5
-        2          || 1.5
-        3          || 1.5
-        4          || 1.5 + 1.5 * 1
-        5          || 1.5 + 1.5 * 2
+        daysRented || charge        | point
+        1          || 1.5           | 1
+        2          || 1.5           | 1
+        3          || 1.5           | 1
+        4          || 1.5 + 1.5 * 1 | 1
+        5          || 1.5 + 1.5 * 2 | 1
     }
 
     @Unroll
-    def '子供向け価格で #daysRented 日レンタルの場合、ポイントは #expected になる'() {
-        given:
-        price = new ChildrenPrice()
-
+    def '新作価格で #daysRented 日レンタルの場合、[料金: #charge][ポイント: #point]になる'() {
         when:
-        def actual = price.getFrequentRenterPoints(daysRented)
-
-        then:
-        actual == expected
-
-        where:
-        daysRented || expected
-        1          || 1
-        2          || 1
-        3          || 1
-    }
-
-    @Unroll
-    def '新作価格で #daysRented 日レンタルの場合、料金は #expected になる'() {
-        given:
         price = new NewReleasePrice()
 
-        when:
-        def actual = price.getCharge(daysRented)
-
         then:
-        actual == expected
+        price.getCharge(daysRented) == charge as double
+        price.getFrequentRenterPoints(daysRented) == point
 
         where:
-        daysRented || expected
-        1          || 3
-        2          || 3 * 2
-        3          || 3 * 3
-        4          || 3 * 4
-        5          || 3 * 5
-    }
-
-    @Unroll
-    def '新作価格で #daysRented 日レンタルの場合、ポイントは #expected になる'() {
-        given:
-        price = new NewReleasePrice()
-
-        when:
-        def actual = price.getFrequentRenterPoints(daysRented)
-
-        then:
-        actual == expected
-
-        where:
-        daysRented || expected
-        1          || 1
-        2          || 2
-        3          || 2
+        daysRented || charge | point
+        1          || 3      | 1
+        2          || 3 * 2  | 2
+        3          || 3 * 3  | 2
+        4          || 3 * 4  | 2
+        5          || 3 * 5  | 2
     }
 }
