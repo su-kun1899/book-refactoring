@@ -15,7 +15,7 @@ class CustomerSpec extends Specification {
         def movies = [
                 new Movie("ジュラシックパーク", Movie.REGULAR),
                 new Movie("スター・ウォーズ", Movie.NEW_RELEASE),
-                new Movie("ドラえもん", Movie.CHILDRENS),
+                new Movie("ドラえもん", Movie.CHILDREN),
         ]
 
         and:
@@ -57,7 +57,7 @@ class CustomerSpec extends Specification {
     def "子供向けを1本4日間レンタルする"() {
         given:
         def rental = new Rental(
-                new Movie("ドラえもん", Movie.CHILDRENS),
+                new Movie("ドラえもん", Movie.CHILDREN),
                 4
         )
 
@@ -83,7 +83,7 @@ class CustomerSpec extends Specification {
         def movies = [
                 new Movie("ジュラシックパーク", Movie.REGULAR),
                 new Movie("スター・ウォーズ", Movie.NEW_RELEASE),
-                new Movie("ドラえもん", Movie.CHILDRENS),
+                new Movie("ドラえもん", Movie.CHILDREN),
         ]
 
         and:
